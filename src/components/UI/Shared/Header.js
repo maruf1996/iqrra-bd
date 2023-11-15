@@ -4,17 +4,18 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const links = [
   { id: 1, title: "হোম", link: "/" },
-  { id: 1, title: "বই", link: "/" },
-  { id: 1, title: "এবাউট", link: "/" },
-  { id: 1, title: "কনটাক্ট", link: "/" },
+  { id: 1, title: "বই সমূহ", link: "/category" },
+  { id: 1, title: "লেখক", link: "/" },
+  { id: 1, title: "আমাদের সম্পর্কে", link: "/about" },
+  { id: 1, title: "যোগাযোগ", link: "/contact" },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="p-4 border-b-2">
-      <div className="container flex justify-between items-center h-16 mx-auto">
+    <header className="p-3 border-b-2">
+      <div className="container flex justify-between items-center h-10 mx-auto">
         <Link
           rel="noopener noreferrer"
           href="/"
@@ -36,9 +37,12 @@ const Header = () => {
             </li>
           ))}
         </ul>
-        <button className="btn btn-sm hidden lg:block bg-white px-6 py-0 font-semibold border border-black rounded">
-          <Link href="">Log in</Link>
-        </button>
+        <Link
+          href="/login"
+          className="btn lg:flex lg:items-center btn-sm hidden bg-white px-6 py-0 font-semibold border border-black rounded"
+        >
+          Log In
+        </Link>
         {/* mobile  */}
         <div className="lg:hidden">
           <div onClick={() => setOpen(!open)} className="block lg:hidden">
@@ -53,17 +57,17 @@ const Header = () => {
             }`}
           >
             {links?.map((link) => (
-              <li key={link.id} className="py-2 border-b-2 text-white">
+              <li key={link.id} className="py-2  border-b-2">
                 <Link
                   href={link.link}
-                  className="p-4 uppercase text-sm tracking-wide"
+                  className="p-4 text-white uppercase text-sm tracking-wide"
                 >
                   {link.title}
                 </Link>
               </li>
             ))}
             <Link
-              href=""
+              href="/login"
               className=" lg:hidden p-4 uppercase text-sm tracking-wide py-2 border-b-2 text-white"
             >
               Log in

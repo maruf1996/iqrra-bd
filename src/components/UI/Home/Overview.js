@@ -8,25 +8,25 @@ const Overview = () => {
             <p className="text-5xl text-yellow-500 font-bold leadi lg:text-6xl">
               50
             </p>
-            <p className="text-sm sm:text-base">Download</p>
+            <p className="text-sm sm:text-base">ডাউনলোড হয়েছে</p>
           </div>
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-teal-500 font-bold leadi lg:text-6xl">
               89K
             </p>
-            <p className="text-sm sm:text-base">Views</p>
+            <p className="text-sm sm:text-base">দেখা হয়েছে </p>
           </div>
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-blue-700 font-bold leadi lg:text-6xl">
               300+
             </p>
-            <p className="text-sm sm:text-base">Books</p>
+            <p className="text-sm sm:text-base">বই আছে</p>
           </div>
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-orange-500 font-bold leadi lg:text-6xl">
               30+
             </p>
-            <p className="text-sm sm:text-base">Category</p>
+            <p className="text-sm sm:text-base">ক্যাটাগরী যুক্ত হয়েছে </p>
           </div>
         </div>
       </section>
@@ -35,14 +35,12 @@ const Overview = () => {
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/book.webp" alt="" />
             <p className="text-center mt-5">
-              Access over 85m academic resources
+              আন লিমিটেড বই পড়ুন ইক্বরা বিডি থেকে
             </p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/search.webp" alt="" />
-            <p className="text-center mt-5">
-              Access over 85m academic resources
-            </p>
+            <p className="text-center mt-5">সার্চ করুন আপনার পছন্দের সেরা বই</p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img
@@ -50,14 +48,12 @@ const Overview = () => {
               src="/assets/download.webp"
               alt=""
             />
-            <p className="text-center mt-5">
-              Access over 85m academic resources
-            </p>
+            <p className="text-center mt-5">যতখুশি পিডিএফ ডাউনলোড করুন</p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/alert.webp" alt="" />
             <p className="text-center mt-5">
-              Access over 85m academic resources
+              নিত্যনতুন বই পেতে আমাদের সাথেই থাকুন
             </p>
           </div>
         </div>
