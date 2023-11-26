@@ -8,7 +8,7 @@ const categories = [
   { id: 3, title: "হাদীস", link: "/assets/category/hadith.png" },
   { id: 4, title: "ফিকহ", link: "/assets/category/fiqah.png" },
   { id: 5, title: "তাজবীদ", link: "/assets/category/tazbid.png" },
-  { id: 6, title: "ইতিহাস", link: "/assets/category/itihas.png" },
+  { id: 6, title: "ইতিহাস", link: "/assets/category/Itihas.png" },
   { id: 7, title: "সীরাতে রাসুল সাঃ", link: "/assets/category/sirat.png" },
   { id: 8, title: "ইসলামী উপন্যাস", link: "/assets/category/uponnas.png" },
   { id: 9, title: "সাহিত্য", link: "/assets/category/sahitto.png" },
@@ -127,22 +127,23 @@ const Category = () => {
   return (
     <section className=" lg:w-[80%] w-[95%] mx-auto mb-16 mt-8 lg:mb-28">
       <h2 className="text-center text-2xl md:text-4xl font-bold">
-        আপনার পছন্দের সেরা বই পড়ুন ইক্বরা বিডিতে
+        আপনার পছন্দের সেরা বই পড়ুন তালিম অনলাইন লাইব্রেরীতে
       </h2>
       <p className=" mb-8 text-center font-bold">
         নির্দিষ্ট ক্যাটাগরীর বই পড়তে সেই ক্যাটাগরীর উপরে ক্লিক করুন।{" "}
       </p>
-      <Link href="" className="container grid grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className="container grid grid-cols-2 lg:grid-cols-6 gap-8">
         {categories.map((category) => (
-          <div
+          <Link
+            href={`/books/${category?.title}`}
             key={category.id}
             className="flex flex-col justify-center lg:p-4 align-middle card shadow-lg"
           >
             <img className="w-[60%] mx-auto" src={category.link} alt="" />
             <p className="text-center mt-5">{category.title}</p>
-          </div>
+          </Link>
         ))}
-      </Link>
+      </div>
     </section>
   );
 };

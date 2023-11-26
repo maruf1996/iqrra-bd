@@ -2,8 +2,8 @@
 const Overview = () => {
   return (
     <div className="lg:my-8">
-      <section className=" p-4 lg:p-4 w-full lg:w-[80%] mx-auto shadow-md">
-        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4">
+      <section className=" p-4 lg:p-4 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
+        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 gap-6 lg:gap-0 my-8">
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-yellow-500 font-bold leadi lg:text-6xl">
               50
@@ -35,12 +35,14 @@ const Overview = () => {
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/book.webp" alt="" />
             <p className="text-center mt-5">
-              আন লিমিটেড বই পড়ুন ইক্বরা বিডি থেকে
+              আন লিমিটেড বই পড়ুন তালিম অনলাইন লাইব্রেরী থেকে
             </p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/search.webp" alt="" />
-            <p className="text-center mt-5">সার্চ করুন আপনার পছন্দের সেরা বই</p>
+            <p className="text-center mt-5">
+              নির্বাচন করুন আপনার পছন্দের সেরা বই
+            </p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img
@@ -48,12 +50,12 @@ const Overview = () => {
               src="/assets/download.webp"
               alt=""
             />
-            <p className="text-center mt-5">যতখুশি পিডিএফ ডাউনলোড করুন</p>
+            <p className="text-center mt-5">যত খুশি পিডিএফ ডাউনলোড করুন</p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/alert.webp" alt="" />
             <p className="text-center mt-5">
-              নিত্যনতুন বই পেতে আমাদের সাথেই থাকুন
+              নিত্য নতুন বই পেতে আমাদের সাথেই থাকুন
             </p>
           </div>
         </div>

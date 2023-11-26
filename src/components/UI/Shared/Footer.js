@@ -8,72 +8,70 @@ const Footer = () => {
             href="#"
             className="flex justify-center space-x-3 lg:justify-start"
           >
-            <span className="self-center text-4xl font-semibold">IQRA BD</span>
+            <span className="self-center text-3xl font-semibold uppercase">
+              Talim Online Libary
+            </span>
           </a>
         </div>
         <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           <div className="space-y-3">
-            <h3 className="tracki uppercase dark:text-gray-50">Features</h3>
-            <ul className="space-y-1">
+            <h3 className="tracki uppercase font-bold text-1xl">ফিচার</h3>
+            <ul className="space-y-1 text-xs">
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  All Book
+                  সমস্ত বই
+                </a>
+              </li>
+
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  আমাদের সম্পর্কে
                 </a>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  All Writers
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  About
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Contact
+                  আমাদের সাথে যোগাযোগ
                 </a>
               </li>
             </ul>
           </div>
           <div className="space-y-3">
-            <h3 className="tracki uppercase dark:text-gray-50">Company</h3>
-            <ul className="space-y-1">
+            <h3 className="tracki uppercase font-bold text-1xl">কোম্পানি</h3>
+            <ul className="space-y-1 text-xs">
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Privacy
+                  ওয়েবসাইট
                 </a>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Terms of Service
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-3">
-            <h3 className="uppercase dark:text-gray-50">Developers</h3>
-            <ul className="space-y-1">
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Linkdin
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Website
+                  জিমেইল
                 </a>
               </li>
             </ul>
           </div>
           <div className="space-y-3">
-            <div className="uppercase dark:text-gray-50">Social media</div>
+            <h3 className="uppercase font-bold text-1xl">ডেভেলপার</h3>
+            <ul className="space-y-1 text-xs">
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  ফেসবুক
+                </a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  লিংকড-ইন
+                </a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  ওয়েবসাইট
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <div className="uppercase font-bold text-1xl">সোশ্যাল মিডিয়া</div>
             <div className="flex justify-start space-x-3">
               <a
                 rel="noopener noreferrer"
@@ -124,7 +122,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-400">
-        © 2023 IQRA BD. All rights reserved.
+        © 2023 TALIM BD. All rights reserved.
       </div>
     </footer>
   );

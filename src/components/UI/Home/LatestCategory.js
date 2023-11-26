@@ -23,17 +23,18 @@ const LatestCategory = () => {
       <h2 className="text-center text-2xl md:text-4xl font-bold mb-8">
         বিষয়ভিত্তিক সেরা বই পাবেন আমাদের কাছে
       </h2>
-      <Link href="" className="container grid grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className="container grid grid-cols-2 lg:grid-cols-6 gap-8">
         {categories.map((category) => (
-          <div
+          <Link
+            href={`/books/${category?.title}`}
             key={category.id}
             className="flex flex-col justify-center lg:p-4 align-middle card shadow-lg"
           >
             <img className="w-[60%] mx-auto" src={category.link} alt="" />
             <p className="text-center mt-5">{category.title}</p>
-          </div>
+          </Link>
         ))}
-      </Link>
+      </div>
     </section>
   );
 };

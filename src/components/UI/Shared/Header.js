@@ -5,9 +5,9 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 const links = [
   { id: 1, title: "হোম", link: "/" },
   { id: 1, title: "বই সমূহ", link: "/category" },
-  { id: 1, title: "লেখক", link: "/" },
   { id: 1, title: "আমাদের সম্পর্কে", link: "/about" },
   { id: 1, title: "যোগাযোগ", link: "/contact" },
+  { id: 1, title: "ড্যাশবোর্ড", link: "/" },
 ];
 
 const Header = () => {
@@ -15,14 +15,19 @@ const Header = () => {
 
   return (
     <header className="p-3 border-b-2">
-      <div className="container flex justify-between items-center h-10 mx-auto">
+      <div className="container flex justify-between items-center h-12 mx-auto">
         <Link
           rel="noopener noreferrer"
           href="/"
           aria-label="Back to homepage"
-          className="flex items-center p-2 text-4xl font-bold"
+          className=""
         >
-          IQRA BD
+          <div className="flex flex-col items-center uppercase">
+            <h1 className="text-2xl lg:text-3xl font-bold text-teal-600">
+              Talim
+            </h1>
+            <h4 className="font-bold mt-[-8px] text-teal-600">Online Libary</h4>
+          </div>
         </Link>
         <ul className="items-stretch hidden space-x-3 md:flex">
           {links?.map((link) => (
@@ -52,7 +57,7 @@ const Header = () => {
             onClick={() => setOpen(!open)}
             className={`items-stretch ${
               open
-                ? "flex flex-col fixed left-0 top-0 w-[70%] md:w-[80%] ease-in-out duration-500 bg-teal-500 h-full z-10 !important"
+                ? "flex flex-col fixed left-0 top-0 w-[70%] md:w-[80%] ease-in-out duration-500 bg-black h-full z-10 !important"
                 : "fixed left-[-100%]"
             }`}
           >
