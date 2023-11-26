@@ -84,8 +84,8 @@ const SubCategory = () => {
       book.subcategory === router.query.subcategory
   );
   return (
-    <div>
-      <div className="w-[96%] border-4 my-8 mx-auto rounded-md ">
+    <div className="bg-gray-50 my-0">
+      <div className="w-[96%] border-2 border-gray-500 my-8 mx-auto rounded-md ">
         {subCategoryBooks.length === 0 ? (
           <div className="">
             <h1 className="text-center p-4 text-red-400">
@@ -94,14 +94,14 @@ const SubCategory = () => {
           </div>
         ) : (
           <div className="">
-            <h2 className="mb-3 text-2xl p-4 font-semibold bg-black leadi text-center text-white">
+            <h2 className="mb-3 text-2xl p-4 font-semibold bg-gray-500 leadi text-center text-white">
               {router.query.subcategory}
             </h2>
             <div className="p-2">
               {subCategoryBooks.length > 0 &&
                 subCategoryBooks?.map((book) => (
                   <a key={book.id} href={book.link}>
-                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2">
+                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2 bg-gray-100">
                       <li className="p-1">{book.name}</li>
                       <li className="p-1 lg:w-[220px] text-start">
                         {book.writer}

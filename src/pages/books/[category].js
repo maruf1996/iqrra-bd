@@ -102,8 +102,8 @@ const Books = () => {
   }
 
   return (
-    <div>
-      <div className="lg:w-[50%] w-[96%] border-black border-4 my-8 mx-auto rounded-md ">
+    <div className="bg-gray-50">
+      <div className="lg:w-[50%] w-[96%] border-gray-500 border-2 my-8 mx-auto rounded-md ">
         {subCategorySet.length === 0 && categoryBooks.length === 0 ? (
           <div className="">
             <h1 className="text-center font-bold p-4 text-red-400">
@@ -112,17 +112,17 @@ const Books = () => {
           </div>
         ) : (
           <div className="">
-            <h2 className="mb-3 text-2xl p-4 font-semibold bg-black leadi text-center text-white">
+            <h2 className="text-2xl p-4 font-semibold bg-gray-600 leadi text-center text-white">
               {router.query.category} বিষয়ক বই
             </h2>
-            <div className="p-2">
+            <div className="p-2 bg-gray-50">
               {subCategorySet.length > 0 &&
                 subCategorySet.map((book) => (
                   <Link
                     href={`/books/subcategorybooks/${book?.subcategory}`}
                     key={book.id}
                   >
-                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2">
+                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2 bg-gray-100">
                       <li className="p-1">{book.subcategory}</li>
                       <li className="p-1 lg:w-[220px] text-start">
                         {book.writer}
@@ -133,7 +133,7 @@ const Books = () => {
               {categoryBooks.length > 0 &&
                 categoryBooks?.map((book) => (
                   <a key={book.id} href={book.link}>
-                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2">
+                    <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2 bg-gray-100">
                       <li className="p-1">{book.name}</li>
                       <li className="p-1 lg:w-[220px] text-start">
                         {book.writer}

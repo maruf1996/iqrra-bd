@@ -23,10 +23,12 @@ const Header = () => {
           className=""
         >
           <div className="flex flex-col items-center uppercase">
-            <h1 className="text-2xl lg:text-3xl font-bold text-teal-600">
+            <h1 className="text-1xl lg:text-2xl font-bold text-teal-600">
               Talim
             </h1>
-            <h4 className="font-bold mt-[-8px] text-teal-600">Online Libary</h4>
+            <h4 className="font-bold mt-[-8px] text-teal-600 text-xs">
+              Online Libary
+            </h4>
           </div>
         </Link>
         <ul className="items-stretch hidden space-x-3 md:flex">
@@ -57,7 +59,7 @@ const Header = () => {
             onClick={() => setOpen(!open)}
             className={`items-stretch ${
               open
-                ? "flex flex-col fixed left-0 top-0 w-[70%] md:w-[80%] ease-in-out duration-500 bg-black h-full z-10 !important"
+                ? "flex flex-col fixed left-0 top-0 w-[70%] md:w-[80%] ease-in-out duration-500 bg-gray-700 h-full z-10 !important"
                 : "fixed left-[-100%]"
             }`}
           >

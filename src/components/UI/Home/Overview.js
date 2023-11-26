@@ -2,15 +2,15 @@
 const Overview = () => {
   return (
     <div className="lg:my-8">
-      <section className=" p-4 lg:p-4 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
-        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 gap-6 lg:gap-0 my-8">
-          <div className="flex flex-col justify-start m-2 lg:m-6">
+      <section className=" p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
+        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 my-8">
+          <div className="flex flex-col justify-start mb-16 lg:m-6">
             <p className="text-5xl text-yellow-500 font-bold leadi lg:text-6xl">
-              50
+              50+
             </p>
             <p className="text-sm sm:text-base">ডাউনলোড হয়েছে</p>
           </div>
-          <div className="flex flex-col justify-start m-2 lg:m-6">
+          <div className="flex flex-col justify-start mb-16 lg:m-6">
             <p className="text-5xl text-teal-500 font-bold leadi lg:text-6xl">
               89K
             </p>
@@ -35,7 +35,7 @@ const Overview = () => {
           <div className="flex flex-col justify-center lg:p-8 align-middle">
             <img className="w-[60%] mx-auto" src="/assets/book.webp" alt="" />
             <p className="text-center mt-5">
-              আন লিমিটেড বই পড়ুন তালিম অনলাইন লাইব্রেরী থেকে
+              আন লিমিটেড বই পড়ুন তালীম লাইব্রেরী থেকে
             </p>
           </div>
           <div className="flex flex-col justify-center lg:p-8 align-middle">

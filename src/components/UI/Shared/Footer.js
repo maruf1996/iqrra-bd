@@ -8,7 +8,7 @@ const Footer = () => {
             href="#"
             className="flex justify-center space-x-3 lg:justify-start"
           >
-            <span className="self-center text-3xl font-semibold uppercase">
+            <span className="self-center text-2xl font-semibold uppercase">
               Talim Online Libary
             </span>
           </a>

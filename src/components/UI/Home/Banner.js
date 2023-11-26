@@ -2,7 +2,7 @@
 
 const Banner = () => {
   return (
-    <div bac className="bg-cover bg-center h-[20rem] lg:h-[98vh] relative z-0">
+    <div bac className="bg-cover bg-center h-[22rem] lg:h-[98vh] relative z-0">
       <img
         src="/assets/banner.jpg"
         alt="Hero Background"
