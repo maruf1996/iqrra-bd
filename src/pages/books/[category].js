@@ -112,7 +112,7 @@ const Books = () => {
           </div>
         ) : (
           <div className="">
-            <h2 className="text-2xl p-4 font-semibold bg-gray-600 leadi text-center text-white">
+            <h2 className="text-2xl p-4 font-semibold bg-gray-500 leadi text-center text-white">
               {router.query.category} বিষয়ক বই
             </h2>
             <div className="p-2 bg-gray-50">

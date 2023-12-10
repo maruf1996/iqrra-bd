@@ -1,45 +1,34 @@
-import { loginUser } from "@/redux/features/userSlice";
+import { createUser } from "@/redux/features/userSlice";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSignIn = async (e) => {
+  const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginUser({ email, password }));
+      await dispatch(createUser({ email, password }));
+      console.log("User created successfully!");
+      router.push("/");
     } catch (error) {
-      console.error("Error Login user:", error.message);
+      console.error("Error creating user:", error.message);
     }
     setEmail("");
     setPassword("");
   };
 
-  useEffect(() => {
-    if (user.email && !isLoading) {
-      Swal.fire({
-        title: "Success",
-        text: "Login successfully",
-        icon: "success",
-      });
-      router.push("/");
-    }
-  }, [user.email, isLoading, router]);
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-[#F1F5F9] text-gray-900">
         <div className=" text-center">
-          <h1 className="my-3 text-black text-4xl font-bold">Log in</h1>
+          <h1 className="my-3 text-black text-4xl font-bold">Add Admin</h1>
         </div>
-        <form onSubmit={handleSignIn} className="">
+        <form onSubmit={handleCreateUser} className="">
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-semibold">Email</span>
@@ -78,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

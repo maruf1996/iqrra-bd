@@ -4,8 +4,17 @@ import Banner from "@/components/UI/Home/Banner";
 import ExtraHedear from "@/components/UI/Home/ExtraHedear";
 import LatestCategory from "@/components/UI/Home/LatestCategory";
 import Overview from "@/components/UI/Home/Overview";
+import { listenToAuthState } from "@/redux/features/userSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listenToAuthState());
+  }, [dispatch]);
+
   return (
     <main>
       <ExtraHedear></ExtraHedear>

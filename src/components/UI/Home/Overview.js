@@ -1,8 +1,19 @@
+import { useTotalBooksQuery } from "@/redux/features/bookApi";
+import { useTotalCategoriesQuery } from "@/redux/features/categoryApi";
+import Loading from "../Shared/loading";
+
 /* eslint-disable @next/next/no-img-element */
 const Overview = () => {
+  const { data: totalBook, isLoading } = useTotalBooksQuery(undefined);
+  const { data: totalCategory } = useTotalCategoriesQuery(undefined);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="lg:my-8">
-      <section className=" p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
+      <section className="my-12 lg:my-2 p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
         <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 my-8">
           <div className="flex flex-col justify-start mb-16 lg:m-6">
             <p className="text-5xl text-yellow-500 font-bold leadi lg:text-6xl">
@@ -18,13 +29,13 @@ const Overview = () => {
           </div>
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-blue-700 font-bold leadi lg:text-6xl">
-              300+
+              {totalBook?.data}+
             </p>
             <p className="text-sm sm:text-base">বই আছে</p>
           </div>
           <div className="flex flex-col justify-start m-2 lg:m-6">
             <p className="text-5xl text-orange-500 font-bold leadi lg:text-6xl">
-              30+
+              {totalCategory?.data}+
             </p>
             <p className="text-sm sm:text-base">ক্যাটাগরী যুক্ত হয়েছে </p>
           </div>

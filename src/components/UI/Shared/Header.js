@@ -1,86 +1,80 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { CgMenuGridR } from "react-icons/cg";
+import { useSelector } from "react-redux";
+import Mobile from "./Mobile";
+import Sidebar from "./Sidebar";
 
-const links = [
+const navLinks = [
   { id: 1, title: "হোম", link: "/" },
-  { id: 1, title: "বই সমূহ", link: "/category" },
-  { id: 1, title: "আমাদের সম্পর্কে", link: "/about" },
-  { id: 1, title: "যোগাযোগ", link: "/contact" },
-  { id: 1, title: "ড্যাশবোর্ড", link: "/" },
+  { id: 2, title: "বই সমূহ", link: "/category" },
+  { id: 3, title: "আমাদের সম্পর্কে", link: "/about" },
+  { id: 4, title: "যোগাযোগ", link: "/contact" },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [dashboarOpen, dashboarSetOpen] = useState(false);
+  const { user } = useSelector((state) => state.user);
 
   return (
-    <header className="p-3 border-b-2">
-      <div className="container flex justify-between items-center h-12 mx-auto">
-        <Link
-          rel="noopener noreferrer"
-          href="/"
-          aria-label="Back to homepage"
-          className=""
-        >
-          <div className="flex flex-col items-center uppercase">
-            <h1 className="text-1xl lg:text-2xl font-bold text-teal-600">
-              Talim
-            </h1>
-            <h4 className="font-bold mt-[-8px] text-teal-600 text-xs">
-              Online Libary
-            </h4>
-          </div>
-        </Link>
-        <ul className="items-stretch hidden space-x-3 md:flex">
-          {links?.map((link) => (
-            <li key={link?.id} className="flex">
-              <Link
-                rel="noopener noreferrer"
-                href={link?.link}
-                className="flex text-1xl items-center px-4 -mb-1 focus:border-b-2"
-              >
-                {link?.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link
-          href="/login"
-          className="btn lg:flex lg:items-center btn-sm hidden bg-white px-6 py-0 font-semibold border border-black rounded"
-        >
-          Log In
-        </Link>
-        {/* mobile  */}
-        <div className="lg:hidden">
-          <div onClick={() => setOpen(!open)} className="block lg:hidden">
-            {open ? <AiOutlineClose size={22} /> : <AiOutlineMenu size={22} />}
-          </div>
-          <ul
-            onClick={() => setOpen(!open)}
-            className={`items-stretch ${
-              open
-                ? "flex flex-col fixed left-0 top-0 w-[70%] md:w-[80%] ease-in-out duration-500 bg-gray-700 h-full z-10 !important"
-                : "fixed left-[-100%]"
-            }`}
+    <header className="">
+      <div className=" bg-base-100">
+        <div className="p-2 container flex flex-row-reverse lg:flex-row justify-between items-center h-14 lg:h-16 mx-auto">
+          <Link
+            href="/"
+            className="hidden lg:block text-teal-700 text-xs font-bold"
           >
-            {links?.map((link) => (
-              <li key={link.id} className="py-2  border-b-2">
-                <Link
-                  href={link.link}
-                  className="p-4 text-white uppercase text-sm tracking-wide"
-                >
-                  {link.title}
-                </Link>
-              </li>
-            ))}
-            <Link
-              href="/login"
-              className=" lg:hidden p-4 uppercase text-sm tracking-wide py-2 border-b-2 text-white"
-            >
-              Log in
-            </Link>
-          </ul>
+            Talim Online Libary
+          </Link>
+          <div className="hidden lg:flex">
+            <ul className="items-stretch lg:flex space-x-3">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <Link
+                    href={link.link}
+                    className="flex items-center uppercase px-4 text-sm tracking-wide"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="">
+            {!user?.email ? (
+              <Link
+                href="/login"
+                className=" lg:btn btn-xs lg:px-6 rounded-md lg:bg-gray-50 hover:border-none"
+              >
+                লগিন
+              </Link>
+            ) : (
+              <div onClick={() => dashboarSetOpen(!dashboarOpen)} className="">
+                <CgMenuGridR size={25} />
+              </div>
+            )}
+          </div>
+          <div className="lg:hidden text-xs text-teal-700 font-bold">
+            Talim Online Libary
+          </div>
+          <div className="lg:hidden">
+            <div onClick={() => setOpen(!open)} className="block lg:hidden">
+              {open ? (
+                <AiOutlineClose size={23} />
+              ) : (
+                <AiOutlineMenu size={23} />
+              )}
+            </div>
+          </div>
         </div>
+        {/* mobile ul  */}
+        <Mobile navLinks={navLinks} open={open} setOpen={setOpen}></Mobile>
+        <Sidebar
+          dashboarOpen={dashboarOpen}
+          dashboarSetOpen={dashboarSetOpen}
+        ></Sidebar>
       </div>
     </header>
   );
