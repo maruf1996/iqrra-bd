@@ -15,18 +15,19 @@ const navLinks = [
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [dashboarOpen, dashboarSetOpen] = useState(false);
+  const [dashboardOpen, setDashboardOpen] = useState(false);
   const { user } = useSelector((state) => state.user);
 
   return (
-    <header className="">
-      <div className=" bg-base-100">
-        <div className="p-2 container flex flex-row-reverse lg:flex-row justify-between items-center h-14 lg:h-16 mx-auto">
-          <Link
-            href="/"
-            className="hidden lg:block text-teal-700 text-xs font-bold"
-          >
-            Talim Online Libary
+    <header className="shadow-xl bg-gray-100">
+      <div className="">
+        <div
+          className={`p-2 container flex flex-row lg:flex-row justify-between items-center h-12 lg:h-16 mx-auto ${
+            user?.email && "flex-row-reverse"
+          }`}
+        >
+          <Link href="/" className="hidden lg:block font-bold">
+            Tanjim Online Library
           </Link>
           <div className="hidden lg:flex">
             <ul className="items-stretch lg:flex space-x-3">
@@ -34,31 +35,31 @@ const Header = () => {
                 <li key={link.id}>
                   <Link
                     href={link.link}
-                    className="flex items-center uppercase px-4 text-sm tracking-wide"
+                    className="flex w-full items-center uppercase px-4 text-sm tracking-wide font-bold"
                   >
                     {link.title}
                   </Link>
                 </li>
               ))}
+              {!user?.email && (
+                <li>
+                  <Link
+                    href="/login"
+                    className="flex w-full items-center uppercase px-4 text-sm tracking-wide font-bold"
+                  >
+                    লগিন
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
-          <div className="">
-            {!user?.email ? (
-              <Link
-                href="/login"
-                className=" lg:btn btn-xs lg:px-6 rounded-md lg:bg-gray-50 hover:border-none"
-              >
-                লগিন
-              </Link>
-            ) : (
-              <div onClick={() => dashboarSetOpen(!dashboarOpen)} className="">
-                <CgMenuGridR size={25} />
-              </div>
-            )}
-          </div>
-          <div className="lg:hidden text-xs text-teal-700 font-bold">
-            Talim Online Libary
-          </div>
+
+          {user?.email && (
+            <div onClick={() => setDashboardOpen(!dashboardOpen)} className="">
+              <CgMenuGridR size={23} />
+            </div>
+          )}
+          <div className="lg:hidden font-bold">Tanjim Online Library</div>
           <div className="lg:hidden">
             <div onClick={() => setOpen(!open)} className="block lg:hidden">
               {open ? (
@@ -72,8 +73,8 @@ const Header = () => {
         {/* mobile ul  */}
         <Mobile navLinks={navLinks} open={open} setOpen={setOpen}></Mobile>
         <Sidebar
-          dashboarOpen={dashboarOpen}
-          dashboarSetOpen={dashboarSetOpen}
+          dashboardOpen={dashboardOpen}
+          setDashboardOpen={setDashboardOpen}
         ></Sidebar>
       </div>
     </header>

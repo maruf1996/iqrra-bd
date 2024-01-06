@@ -17,23 +17,12 @@ const links = [
   { id: "3", link: "/dashboard/book-management", title: "Book Management" },
   {
     id: "4",
-    link: "/dashboard/add-category",
-    title: "Add Category",
-  },
-  {
-    id: "5",
-    link: "/dashboard/add-subcategory",
-    title: "Add Sub-Category",
-  },
-  { id: "6", link: "/dashboard/add-book", title: "Add Book" },
-  {
-    id: "7",
     link: "/dashboard/add-admin",
     title: "Add Admin",
   },
 ];
 
-const Sidebar = ({ dashboarOpen, dashboarSetOpen }) => {
+const Sidebar = ({ dashboardOpen, setDashboardOpen }) => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -41,16 +30,18 @@ const Sidebar = ({ dashboarOpen, dashboarSetOpen }) => {
 
   return (
     <aside
-      onClick={() => dashboarSetOpen(!dashboarOpen)}
+      onClick={() => setDashboardOpen(!dashboardOpen)}
       className={`items-stretch ${
-        dashboarOpen
+        dashboardOpen
           ? "flex flex-col fixed left-0 top-0 w-[100%] md:w-[100%] lg:w-[30%] ease-in-out duration-500 bg-gray-800 h-full z-10 !important"
           : "fixed left-[-100%]"
       }`}
     >
       <div className="bg-gray-50 p-4 h-12 lg:h-16 flex justify-between items-center">
-        <div className="text-teal-700 font-bold">Talim Online Libary</div>
-        <div onClick={() => dashboarSetOpen(!dashboarOpen)} className="">
+        <div className=" font-bold">
+          <Link href="/">Tanjim Online Library</Link>
+        </div>
+        <div onClick={() => setDashboardOpen(!dashboardOpen)} className="">
           <AiOutlineClose size={25} />
         </div>
       </div>
@@ -58,7 +49,7 @@ const Sidebar = ({ dashboarOpen, dashboarSetOpen }) => {
         {links.map((link) => (
           <li key={link.id} className="py-3 ml-4 border-b-2">
             <Link
-              className="py-4 uppercase text-gray-50 text-sm tracking-wide"
+              className="w-full block uppercase text-gray-50 text-sm tracking-wide"
               href={link.link}
             >
               {link.title}

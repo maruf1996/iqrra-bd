@@ -1,130 +1,114 @@
-import DashboardLayout from "@/components/Layouts/DashboardLayout";
+import RootLayout from "@/components/Layouts/RootLayout";
 import Loading from "@/components/UI/Shared/loading";
 import { usePostBookMutation } from "@/redux/features/bookApi";
 import { useGetCategoriesQuery } from "@/redux/features/categoryApi";
-import { useGetSubCategoriesQuery } from "@/redux/features/subcategoryApi";
+import { useGetSubCategoriesQuery } from "@/redux/features/subCategoryApi";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
 const AddBook = () => {
-  const [name, setName] = useState("");
-  const [writer, setWriter] = useState("");
-  const [link, setLink] = useState("");
-  const [category, setCategory] = useState("");
-  const [subcategory, setSubCategory] = useState("");
-  const { data: categories, isLoading } = useGetCategoriesQuery(undefined);
-  const { data: subCategories } = useGetSubCategoriesQuery(undefined);
-  const [createBook, { isSuccess }] = usePostBookMutation();
-  // console.log(categories);
+  const [bookData, setBookData] = useState({
+    name: "",
+    writer: "",
+    link: "",
+    category: "",
+    subcategory: "",
+  });
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  const { data: categories, isLoading: isLoadingCategories } =
+    useGetCategoriesQuery(undefined);
+  const { data: subCategories } = useGetSubCategoriesQuery(undefined);
+  const [createBook] = usePostBookMutation();
 
   const handleAddBook = async (e) => {
     e.preventDefault();
-    const options = {
-      data: { name, writer, link, category, subcategory },
-    };
-    console.log(options);
-    createBook(options)
-      .unwrap()
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Book Created Successfully",
-        });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    try {
+      console.log(bookData);
+      await createBook({ data: bookData }).unwrap();
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Book Created Successfully",
       });
-    setName("");
-    setWriter("");
-    setLink("");
-    setCategory("");
-    setSubCategory("");
+      setBookData({
+        name: "",
+        writer: "",
+        link: "",
+        category: "",
+        subcategory: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+
+      if (error.data) {
+        Swal.fire({
+          icon: "error",
+          title: "API Error",
+          text:
+            error.data.message ||
+            "An error occurred while processing your request.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An unexpected error occurred. Please try again later.",
+        });
+      }
+    }
   };
+
+  const handleSelectChange = (field, selectedValue) => {
+    setBookData({
+      ...bookData,
+      [field]: selectedValue,
+    });
+  };
+
+  if (isLoadingCategories) {
+    return <Loading />;
+  }
+
+  const inputFields = [
+    { label: "Name", type: "text" },
+    { label: "Writer", type: "text" },
+    { label: "Link", type: "text" },
+  ];
 
   return (
     <div className="w-[95%] lg:w-[40%] mx-auto my-4 lg:my-4 bg-gray-200">
-      <div className="w-full  p-8 space-y-3 rounded-xl bg-gray-700 text-gray-100">
+      <div className="w-full p-8 space-y-3 rounded-xl bg-gray-700 text-gray-100">
         <h1 className="text-2xl font-bold text-center">Add Book</h1>
         <form onSubmit={handleAddBook} className="space-y-6">
-          <div className="space-y-1 text-sm">
-            <label htmlFor="name" className="block dark:text-gray-400">
-              name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+          {inputFields.map((field) => (
+            <InputField
+              key={field.label}
+              label={field.label}
+              type={field.type}
+              value={bookData[field.label.toLowerCase()]}
+              onChange={(e) =>
+                setBookData({
+                  ...bookData,
+                  [field.label.toLowerCase()]: e.target.value,
+                })
+              }
               required
-              placeholder="Name"
-              className="w-full px-4 py-3 rounded-md text-gray-700"
             />
-          </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="writer" className="block dark:text-gray-400">
-              writer <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="writer"
-              value={writer}
-              onChange={(e) => setWriter(e.target.value)}
-              required
-              placeholder="Writer"
-              className="w-full px-4 py-3 rounded-md text-gray-700"
-            />
-          </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="link" className="block dark:text-gray-400">
-              Link <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="link"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-              required
-              placeholder="Link"
-              className="w-full px-4 py-3 rounded-md text-gray-700"
-            />
-          </div>
-          <div className="space-y-1 text-sm">
-            <label className="">
-              Category <span className="text-red-500">*</span>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className=" text-gray-700  w-full input mt-2"
-              >
-                {categories?.data?.map((c) => (
-                  <option key={c?._id} value={c?.title}>
-                    {c?.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="space-y-1 text-sm">
-            <label>
-              Sub Category
-              <select
-                value={subcategory}
-                onChange={(e) => setSubCategory(e.target.value)}
-                className=" text-gray-700  w-full input mt-2"
-              >
-                {subCategories?.data?.map((sc) => (
-                  <option key={sc?._id} value={sc?.title}>
-                    {sc?.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+          ))}
+          {renderSelectField(
+            "Category",
+            bookData.category,
+            handleSelectChange,
+            categories?.data
+          )}
+
+          {renderSelectField(
+            "Subcategory", // Update the label to "Subcategory"
+            bookData.subcategory,
+            handleSelectChange,
+            subCategories?.data
+          )}
+
           <button className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-200">
             Add
           </button>
@@ -134,8 +118,44 @@ const AddBook = () => {
   );
 };
 
+const InputField = ({ label, type, value, onChange, required }) => (
+  <div className="space-y-1 text-sm">
+    <label htmlFor={label.toLowerCase()} className="block dark:text-gray-400">
+      {label} <span className="text-red-500">*</span>
+    </label>
+    <input
+      type={type}
+      name={label.toLowerCase()}
+      value={value}
+      onChange={onChange}
+      required={required}
+      placeholder={label}
+      className="w-full px-4 py-3 rounded-md text-gray-700"
+    />
+  </div>
+);
+
+const renderSelectField = (label, value, onChange, options) => (
+  <div className="space-y-1 text-sm">
+    <label className="">
+      {label} <span className="text-red-500">*</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(label.toLowerCase(), e.target.value)}
+        className="text-gray-700 w-full input mt-2"
+      >
+        {options?.map((option) => (
+          <option key={option._id} value={option.title}>
+            {option.title}
+          </option>
+        ))}
+      </select>
+    </label>
+  </div>
+);
+
 export default AddBook;
 
 AddBook.getLayout = function getLayout(page) {
-  return <DashboardLayout>{page}</DashboardLayout>;
+  return <RootLayout>{page}</RootLayout>;
 };

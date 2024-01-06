@@ -1,3 +1,4 @@
+import RootLayout from "@/components/Layouts/RootLayout";
 import { createUser } from "@/redux/features/userSlice";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -25,36 +26,12 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-[#F1F5F9] text-gray-900">
-        <div className=" text-center">
+        <div className="text-center">
           <h1 className="my-3 text-black text-4xl font-bold">Add Admin</h1>
         </div>
-        <form onSubmit={handleCreateUser} className="">
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-semibold">Email</span>
-            </label>
-            <input
-              type="email"
-              name="from_email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input w-full input-bordered input-success"
-              required
-            />
-          </div>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-semibold">Password</span>
-            </label>
-            <input
-              type="password"
-              name="from_name"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input w-full input-bordered input-error"
-              required
-            />
-          </div>
+        <form onSubmit={handleCreateUser} className="space-y-4">
+          {renderInput("Email", email, setEmail, "email")}
+          {renderInput("Password", password, setPassword, "password")}
           <button
             type="submit"
             className="w-full btn btn-outline btn-secondary lg:mt-8 mt-5 px-9"
@@ -67,4 +44,25 @@ const Register = () => {
   );
 };
 
+const renderInput = (label, value, onChange, type) => (
+  <div className="form-control w-full" key={label}>
+    <label className="label">
+      <span className="label-text font-semibold">{label}</span>
+    </label>
+    <input
+      type={type}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={`input w-full input-bordered ${
+        type === "email" ? "input-success" : "input-error"
+      }`}
+      required
+    />
+  </div>
+);
+
 export default Register;
+
+Register.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};

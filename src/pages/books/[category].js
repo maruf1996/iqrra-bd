@@ -1,99 +1,72 @@
 import RootLayout from "@/components/Layouts/RootLayout";
+import Loading from "@/components/UI/Shared/loading";
+import { useGetBooksQuery } from "@/redux/features/bookApi";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-const books = [
-  {
-    id: 1,
-    name: "তাফসীরে মারেফুল কোরআন-১",
-    writer: "মুফতী শফী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাফসীরে মারেফুল কোরআন",
-  },
-  {
-    id: 1,
-    name: "তাফসীরে মারেফুল কোরআন-২",
-    writer: "মুফতী শফী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাফসীরে মারেফুল কোরআন",
-  },
-  {
-    id: 1,
-    name: "তাফসীরে মারেফুল কোরআন-৩",
-    writer: "মুফতী শফী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাফসীরে মারেফুল কোরআন",
-  },
-  {
-    id: 1,
-    name: "তাফসীরে মারেফুল কোরআন-৪",
-    writer: "মুফতী শফী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাফসীরে মারেফুল কোরআন",
-  },
-  {
-    id: 1,
-    name: "তাফসীরে মারেফুল কোরআন-৫",
-    writer: "মুফতী শফী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাফসীরে মারেফুল কোরআন",
-  },
-  {
-    id: 2,
-    name: "তাফসীরে আমপারা",
-    writer: "শামসুল হক ফরিদপুরী রহঃ",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "",
-  },
-  {
-    id: 3,
-    name: "তাফসীরে সূরা ফাতিহা",
-    writer: "মুফতী ইয়াসীন নবীপুরী",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "",
-  },
-  {
-    id: 3,
-    name: "তাফসীরে তাওযিহুল কোরআন-১",
-    writer: "মুফতী তাকী উসমা্নী",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাওযিহুল কোরআন",
-  },
-  {
-    id: 3,
-    name: "তাফসীরে তাওযিহুল কোরআন-২",
-    writer: "মুফতী তাকী উসমানী",
-    link: "",
-    category: "তাফসীর",
-    subcategory: "তাওযিহুল কোরআন",
-  },
-];
+import { useEffect, useState } from "react";
 
 const Books = () => {
   const router = useRouter();
+  const { data, isLoading } = useGetBooksQuery(undefined);
+  const books = data?.data;
+  const [totalDownload, setTotalDownload] = useState();
+  // console.log(data);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db"
+        );
+        if (!response.ok) {
+          console.error("Error:", response.statusText);
+          return;
+        }
+        const data = await response.json();
+        setTotalDownload(data?.data?.count);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    };
+    fetchData();
+  }, []);
+  // console.log(totalDownload);
+
+  const countDownLoad = async () => {
+    const count = Number(totalDownload) + 1;
+    // console.log(count);
+
+    const dataToSend = { count: count };
+    const response = await fetch(
+      "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      }
+    );
+    console.log(response);
+  };
+
   const subCategorySet = [];
 
   const categoryBooks = books?.filter(
     (book) =>
-      book.subcategory.length == 0 && book.category === router.query.category
+      book?.subcategory?.length === 0 &&
+      book?.category === router.query.category
   );
 
   const subCategoryBooks = books?.filter(
     (book) =>
-      book.subcategory.length > 0 && book.category === router.query.category
+      book?.subcategory?.length > 0 && book?.category === router.query.category
   );
+
   if (subCategoryBooks) {
     for (const book of subCategoryBooks) {
-      const findBook = subCategorySet.find(
-        (sBook) => sBook.subcategory === book.subcategory
+      const findBook = subCategorySet?.find(
+        (sBook) => sBook?.subcategory === book?.subcategory
       );
       if (!findBook) {
         subCategorySet.push(book);
@@ -101,10 +74,14 @@ const Books = () => {
     }
   }
 
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="bg-gray-50">
       <div className="lg:w-[50%] w-[96%] border-gray-500 border-2 my-8 mx-auto rounded-md ">
-        {subCategorySet.length === 0 && categoryBooks.length === 0 ? (
+        {subCategorySet?.length === 0 && categoryBooks?.length === 0 ? (
           <div className="">
             <h1 className="text-center font-bold p-4 text-red-400">
               কোন বই খুঁজে পাওয়া যায়নি
@@ -116,28 +93,29 @@ const Books = () => {
               {router.query.category} বিষয়ক বই
             </h2>
             <div className="p-2 bg-gray-50">
-              {subCategorySet.length > 0 &&
-                subCategorySet.map((book) => (
+              {subCategorySet?.length > 0 &&
+                subCategorySet?.map((book) => (
                   <Link
                     href={`/books/subcategorybooks/${book?.subcategory}`}
-                    key={book.id}
+                    key={book?._id}
                   >
                     <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2 bg-gray-100">
-                      <li className="p-1">{book.subcategory}</li>
-                      <li className="p-1 lg:w-[220px] text-start">
-                        {book.writer}
-                      </li>
+                      <li className="p-1 font-bold">{book?.subcategory}</li>
+                      <li className="p-1 text-start">{book?.writer}</li>
                     </ul>
                   </Link>
                 ))}
-              {categoryBooks.length > 0 &&
+              {categoryBooks?.length > 0 &&
                 categoryBooks?.map((book) => (
-                  <a key={book.id} href={book.link}>
+                  <a
+                    onClick={countDownLoad}
+                    key={book?._id}
+                    href={book?.link}
+                    target="_blank"
+                  >
                     <ul className="flex justify-between lg:flex-row flex-col border p-2 m-2 bg-gray-100">
-                      <li className="p-1">{book.name}</li>
-                      <li className="p-1 lg:w-[220px] text-start">
-                        {book.writer}
-                      </li>
+                      <li className="p-1 font-bold">{book?.name}</li>
+                      <li className="p-1  text-start">{book?.writer}</li>
                     </ul>
                   </a>
                 ))}

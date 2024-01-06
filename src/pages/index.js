@@ -1,5 +1,5 @@
 import RootLayout from "@/components/Layouts/RootLayout";
-import AboutIqra from "@/components/UI/Home/AboutIqra";
+import AboutHome from "@/components/UI/Home/AboutHome";
 import Banner from "@/components/UI/Home/Banner";
 import ExtraHedear from "@/components/UI/Home/ExtraHedear";
 import LatestCategory from "@/components/UI/Home/LatestCategory";
@@ -20,7 +20,7 @@ export default function HomePage() {
       <ExtraHedear></ExtraHedear>
       <Banner></Banner>
       <Overview></Overview>
-      <AboutIqra></AboutIqra>
+      <AboutHome></AboutHome>
       <LatestCategory></LatestCategory>
     </main>
   );

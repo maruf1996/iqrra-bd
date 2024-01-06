@@ -1,8 +1,7 @@
 import { loginUser } from "@/redux/features/userSlice";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,30 +15,23 @@ const Login = () => {
     try {
       await dispatch(loginUser({ email, password }));
     } catch (error) {
-      console.error("Error Login user:", error.message);
+      console.error("Error logging in user:", error.message);
     }
     setEmail("");
     setPassword("");
   };
 
-  useEffect(() => {
-    if (user.email && !isLoading) {
-      Swal.fire({
-        title: "Success",
-        text: "Login successfully",
-        icon: "success",
-      });
-      router.push("/");
-    }
-  }, [user.email, isLoading, router]);
+  if (user?.email) {
+    router.push("/");
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-[#F1F5F9] text-gray-900">
-        <div className=" text-center">
+        <div className="text-center">
           <h1 className="my-3 text-black text-4xl font-bold">Log in</h1>
         </div>
-        <form onSubmit={handleSignIn} className="">
+        <form onSubmit={handleSignIn}>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-semibold">Email</span>

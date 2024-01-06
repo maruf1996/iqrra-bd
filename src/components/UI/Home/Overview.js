@@ -1,78 +1,120 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { useTotalBooksQuery } from "@/redux/features/bookApi";
 import { useTotalCategoriesQuery } from "@/redux/features/categoryApi";
+import { useEffect, useState } from "react";
 import Loading from "../Shared/loading";
 
-/* eslint-disable @next/next/no-img-element */
 const Overview = () => {
-  const { data: totalBook, isLoading } = useTotalBooksQuery(undefined);
-  const { data: totalCategory } = useTotalCategoriesQuery(undefined);
+  const { data: totalBook, isLoading: bookLoading } = useTotalBooksQuery();
+  const { data: totalCategory } = useTotalCategoriesQuery();
+  const [totalDownload, setTotalDownload] = useState("");
+  const [visitorCount, setVisitorCount] = useState("");
 
-  if (isLoading) {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://talim-online-libary-backend.vercel.app/api/v1/download/6592b27feaae4327d3ca56e0"
+        );
+        if (!response.ok) {
+          console.error("Error:", response.statusText);
+          return;
+        }
+        const data = await response.json();
+        setVisitorCount(data?.data?.count);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db"
+        );
+        if (!response.ok) {
+          console.error("Error:", response.statusText);
+          return;
+        }
+        const data = await response.json();
+        setTotalDownload(data?.data?.count);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (bookLoading) {
     return <Loading />;
   }
 
   return (
     <div className="lg:my-8">
-      <section className="my-12 lg:my-2 p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
-        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 my-8">
-          <div className="flex flex-col justify-start mb-16 lg:m-6">
-            <p className="text-5xl text-yellow-500 font-bold leadi lg:text-6xl">
-              50+
-            </p>
-            <p className="text-sm sm:text-base">ডাউনলোড হয়েছে</p>
-          </div>
-          <div className="flex flex-col justify-start mb-16 lg:m-6">
-            <p className="text-5xl text-teal-500 font-bold leadi lg:text-6xl">
-              89K
-            </p>
-            <p className="text-sm sm:text-base">দেখা হয়েছে </p>
-          </div>
-          <div className="flex flex-col justify-start m-2 lg:m-6">
-            <p className="text-5xl text-blue-700 font-bold leadi lg:text-6xl">
-              {totalBook?.data}+
-            </p>
-            <p className="text-sm sm:text-base">বই আছে</p>
-          </div>
-          <div className="flex flex-col justify-start m-2 lg:m-6">
-            <p className="text-5xl text-orange-500 font-bold leadi lg:text-6xl">
-              {totalCategory?.data}+
-            </p>
-            <p className="text-sm sm:text-base">ক্যাটাগরী যুক্ত হয়েছে </p>
-          </div>
+      <section className="my-8 lg:my-2 p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
+        <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 gap-8">
+          {renderStat("ডাউনলোড হয়েছে", "text-yellow-500", `${totalDownload}`)}
+          {renderStat("দেখা হয়েছে", "text-teal-500", `${visitorCount}`)}
+          {renderStat("বই আছে", "text-blue-700", `${totalBook?.data}`)}
+          {renderStat(
+            "ক্যাটাগরী যুক্ত হয়েছে",
+            "text-orange-500",
+            `${totalCategory?.data}`
+          )}
         </div>
       </section>
       <section className="p-4 w-full lg:w-[75%] mx-auto mt-6 lg:mt-12">
         <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="flex flex-col justify-center lg:p-8 align-middle">
-            <img className="w-[60%] mx-auto" src="/assets/book.webp" alt="" />
-            <p className="text-center mt-5">
-              আন লিমিটেড বই পড়ুন তালীম লাইব্রেরী থেকে
-            </p>
-          </div>
-          <div className="flex flex-col justify-center lg:p-8 align-middle">
-            <img className="w-[60%] mx-auto" src="/assets/search.webp" alt="" />
-            <p className="text-center mt-5">
-              নির্বাচন করুন আপনার পছন্দের সেরা বই
-            </p>
-          </div>
-          <div className="flex flex-col justify-center lg:p-8 align-middle">
-            <img
-              className="w-[60%] mx-auto"
-              src="/assets/download.webp"
-              alt=""
-            />
-            <p className="text-center mt-5">যত খুশি পিডিএফ ডাউনলোড করুন</p>
-          </div>
-          <div className="flex flex-col justify-center lg:p-8 align-middle">
-            <img className="w-[60%] mx-auto" src="/assets/alert.webp" alt="" />
-            <p className="text-center mt-5">
-              নিত্য নতুন বই পেতে আমাদের সাথেই থাকুন
-            </p>
-          </div>
+          {renderFeature(
+            "/assets/book.webp",
+            "আন লিমিটেড বই পড়ুন তানযীম লাইব্রেরী থেকে"
+          )}
+          {renderFeature(
+            "/assets/search.webp",
+            "নির্বাচন করুন আপনার পছন্দের সেরা বই"
+          )}
+          {renderFeature(
+            "/assets/download.webp",
+            "যত খুশি পিডিএফ ডাউনলোড করুন"
+          )}
+          {renderFeature(
+            "/assets/alert.webp",
+            "নিত্য নতুন বই পেতে আমাদের সাথেই থাকুন"
+          )}
         </div>
       </section>
     </div>
   );
 };
+
+const renderStat = (label, colorClass, value) => (
+  <div
+    data-aos="zoom-in"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000"
+    className="flex flex-col justify-start lg:m-6 align-middle card shadow-lg p-4 lg:p-0 lg:shadow-none"
+  >
+    <p className={`text-5xl font-bold leadi lg:text-6xl ${colorClass}`}>
+      {value}
+    </p>
+    <p className="text-sm mt-1 sm:text-base">{label}</p>
+  </div>
+);
+
+const renderFeature = (imageSrc, description) => (
+  <div
+    data-aos="zoom-in"
+    data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000"
+    className="flex flex-col justify-center lg:p-8 align-middle"
+  >
+    <img className="w-[60%] mx-auto" src={imageSrc} alt="" />
+    <p className="text-center mt-5">{description}</p>
+  </div>
+);
 
 export default Overview;
