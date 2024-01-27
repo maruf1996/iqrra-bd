@@ -31,21 +31,23 @@ const SubCategory = () => {
   // console.log(totalDownload);
 
   const countDownLoad = async () => {
-    const count = Number(totalDownload) + 1;
-    console.log(count);
+    if (Number(totalDownload) > 1) {
+      const count = Number(totalDownload) + 1;
+      console.log(count);
 
-    const dataToSend = { count: count };
-    const response = await fetch(
-      "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      }
-    );
-    console.log(response);
+      const dataToSend = { count: count };
+      const response = await fetch(
+        "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        }
+      );
+      console.log(response);
+    }
   };
 
   const books = data?.data;
@@ -63,7 +65,12 @@ const SubCategory = () => {
 
   return (
     <div className="bg-gray-50 my-0">
-      <div className="w-[96%] lg:w-[50%] border-2 border-gray-500 my-8 mx-auto rounded-md ">
+      <div
+        data-aos="zoom-in-up"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="1000"
+        className="w-[96%] lg:w-[50%] border-2 border-gray-500 my-8 mx-auto rounded-md "
+      >
         {subCategoryBooks?.length === 0 ? (
           <div className="">
             <h1 className="text-center p-4 text-red-400">

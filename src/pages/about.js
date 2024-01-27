@@ -1,62 +1,79 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 import RootLayout from "@/components/Layouts/RootLayout";
+
+const teams = [
+  {
+    id: 1,
+    name: "Shahnur Shaheen",
+    pation: "Advisor",
+    image: "/assets/Team/shahnur.png",
+  },
+  {
+    id: 2,
+    name: "Ehsanul Haque",
+    pation: "Sponser",
+    image: "/assets/Team/rasel.png",
+  },
+  {
+    id: 3,
+    name: "Hafizur Rahman",
+    pation: "Sponser",
+    image: "/assets/Team/hafiz.png",
+  },
+  {
+    id: 4,
+    name: "Eshak Al Foridy",
+    pation: "Sponser",
+    image: "/assets/Team/eshak.png",
+  },
+];
 
 const About = () => {
   return (
     <div>
-      <section className="bg-gray-700 text-gray-100">
-        <div className="flex flex-col-reverse justify-center p-0 mx-auto  lg:py-12 lg:flex-row lg:justify-between lg:px-20">
-          <div className="flex flex-col justify-center pb-4 px-3 lg:p-4 rounded-sm lg:max-w-[50%]">
-            <h1 className="text-[1.3rem] font-bold leadi lg:text-3xl">
-              তানযীম অনলাইন লাইব্রেরীর পথচলা
-            </h1>
-            <p className="my-4 lg:my-8 text-sm">
-              বইপ্রেমীদের জন্য তানযীম অনলাইন লাইব্রেরী একটি জনপ্রিয় অনলাইন
-              লাইব্রেরী। তানযীম অনলাইন লাইব্রেরী নিয়ে এসেছে অনলাইনে বইয়ের বিশাল
-              সমারহ। তানযীম অনলাইন লাইব্রেরী চেষ্টা করে যাচ্ছে তার পাঠকদের জন্য
-              ব্যতিক্রমী কিছু উপহার দেওয়ার।
-            </p>
-            <p className="text-sm">
-              বিভিন্ন লেখক ও বিভিন্ন ক্যাটাগরীর বিভিন্ন বই নির্বিগ্নে যেন পাঠক
-              পড়তে পারে এজন্যই জন্ম হয়েছে তানযীম অনলাইন লাইব্রেরী। আপনারা আমাদের
-              পাশে থাকলে আমরা চেষ্টা করবো আমাদের সর্বোচ্চ পরিশ্রম ও ত্যাগের
-              মাধ্যমে আরো ভালো কিছু আপনাদের উপহার দিতে।
-            </p>
-          </div>
-          <div className="flex items-center justify-center p-2 mt-2 lg:mt-8  h-72 sm:h-80 lg:h-96 mb-2">
+      <section className="py-6">
+        <div className=" flex flex-col items-center justify-center p-4 mx-auto space-y-8 sm:p-10">
+          <h1
+            data-aos="zoom-in"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1000"
+            className="text-4xl font-bold leadi text-center sm:text-5xl"
+          >
+            Meet Our Team
+          </h1>
+          <div
+            data-aos="zoom-in"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1000"
+            className="flex flex-col justify-center text-center pt-4"
+          >
             <img
-              data-aos="zoom-in"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration="1000"
-              src="/assets/book-about.png"
               alt=""
-              className="object-contain border rounded bg-gray-50 h-72 sm:h-80 lg:h-96 w-full"
+              className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600"
+              src="/assets/Team/maruf.png"
             />
+            <p className="text-xl font-semibold leadi">Mariful Islam</p>
+            <p className="">Founder</p>
           </div>
-        </div>
-      </section>
-      <section className="text-gray-800 bg-gray-100">
-        <div className="grid grid-cols-1 lg:grid-cols-2 py-8 px-0 lg:px-16 lg:gap-8 w-full min-h-[30rem] items-center">
-          <div className="card flex items-center justify-center shadow-md p-8 w-[96%] lg:w-[80%] mx-auto bg-gray-50 min-h-[15rem]">
-            <h1 className="text-3xl  mb-4 text-center">বিশেষ আবেদন!</h1>
-            <p className="text-justify text-sm ">
-              তানযীম অনলাইন লাইব্রেরীর ওয়েবসাইটটিতে এখনো ডোমেইন হোস্টিংসহ অনেক
-              কাজ চলমান। এসমস্ত কাজ বিশেষ করে ডোমেইন হোস্টিং এর জন্য ভালো
-              পরিমাণে আমাদের অর্থের প্রয়োজন। আশাকরি তানযীম অনলাইন লাইব্রেরীর
-              পাঠকরা আমাদের যথাসাধ্য সহযোগিতা করবেন।
-            </p>
-          </div>
-          <div className="card p-4 text-center lg:text-justify mt-12 lg:mt-0 w-[99%] lg:w-[80%] mx-auto">
-            <h1 className="text-2xl ">যারা টাকা পাঠাবেন</h1>
-            <p>
-              <span className="">01978907918</span> (BKASH PERSONAL)
-            </p>
-            <p>
-              <span className="">01978907918</span> (NOGOD PERSONAL)
-            </p>
-            <h1 className="text-2xl mt-4">যে কোন প্রয়োজনে</h1>
-            <p className=" mb-1">maruf3813@gmail.com</p>
-            <p className=" mb-1">01978907918 , 01617589004</p>
+          <div className="w-[98%] lg:w-[80%] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {teams.map((team) => (
+              <div
+                data-aos="zoom-in"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="1000"
+                key={team?.id}
+                className="flex flex-col justify-center mt-4 text-center"
+              >
+                <img
+                  alt=""
+                  className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600"
+                  src={team?.image}
+                />
+                <p className="text-xl font-semibold leadi">{team?.name}</p>
+                <p className="">{team?.pation}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

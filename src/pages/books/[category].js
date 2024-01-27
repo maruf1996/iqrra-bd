@@ -33,21 +33,21 @@ const Books = () => {
   // console.log(totalDownload);
 
   const countDownLoad = async () => {
-    const count = Number(totalDownload) + 1;
-    // console.log(count);
-
-    const dataToSend = { count: count };
-    const response = await fetch(
-      "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      }
-    );
-    console.log(response);
+    if (Number(totalDownload) > 1) {
+      const count = Number(totalDownload) + 1;
+      const dataToSend = { count: count };
+      const response = await fetch(
+        "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        }
+      );
+      console.log(response);
+    }
   };
 
   const subCategorySet = [];
@@ -80,7 +80,12 @@ const Books = () => {
 
   return (
     <div className="bg-gray-50">
-      <div className="lg:w-[50%] w-[96%] border-gray-500 border-2 my-8 mx-auto rounded-md ">
+      <div
+        data-aos="zoom-in-up"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="1000"
+        className="lg:w-[50%] w-[96%] border-gray-500 border-2 my-8 mx-auto rounded-md "
+      >
         {subCategorySet?.length === 0 && categoryBooks?.length === 0 ? (
           <div className="">
             <h1 className="text-center font-bold p-4 text-red-400">

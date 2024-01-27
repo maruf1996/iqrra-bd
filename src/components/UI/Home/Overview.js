@@ -54,8 +54,8 @@ const Overview = () => {
   }
 
   return (
-    <div className="lg:my-8">
-      <section className="my-8 lg:my-2 p-4 lg:p-3 w-full lg:w-[80%] mx-auto shadow-sm lg:shadow-md">
+    <div className="lg:my-8 ">
+      <section className="my-8 lg:mt-12 p-4 lg:p-3 w-full lg:w-[90%] mx-auto shadow-sm lg:shadow-md ">
         <div className="lg:container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-4 gap-8">
           {renderStat("ডাউনলোড হয়েছে", "text-yellow-500", `${totalDownload}`)}
           {renderStat("দেখা হয়েছে", "text-teal-500", `${visitorCount}`)}
@@ -67,7 +67,7 @@ const Overview = () => {
           )}
         </div>
       </section>
-      <section className="p-4 w-full lg:w-[75%] mx-auto mt-6 lg:mt-12">
+      <section className="p-4 w-full lg:w-[85%] mx-auto mt-6 lg:mt-12">
         <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
           {renderFeature(
             "/assets/book.webp",

@@ -19,14 +19,14 @@ const Header = () => {
   const { user } = useSelector((state) => state.user);
 
   return (
-    <header className="shadow-xl bg-gray-100">
+    <header className="border-b-2 border-[#F4B223]">
       <div className="">
         <div
-          className={`p-2 container flex flex-row lg:flex-row justify-between items-center h-12 lg:h-16 mx-auto ${
+          className={`p-2 container flex flex-row lg:flex-row justify-between items-center h-20 mx-auto  ${
             user?.email && "flex-row-reverse"
           }`}
         >
-          <Link href="/" className="hidden lg:block font-bold">
+          <Link href="/" className="hidden lg:block font-bold lg:text-2xl">
             Tanjim Online Library
           </Link>
           <div className="hidden lg:flex">
@@ -35,7 +35,7 @@ const Header = () => {
                 <li key={link.id}>
                   <Link
                     href={link.link}
-                    className="flex w-full items-center uppercase px-4 text-sm tracking-wide font-bold"
+                    className="flex w-full items-center uppercase px-4 text-[1.1rem] tracking-wide font-medium"
                   >
                     {link.title}
                   </Link>
@@ -45,7 +45,7 @@ const Header = () => {
                 <li>
                   <Link
                     href="/login"
-                    className="flex w-full items-center uppercase px-4 text-sm tracking-wide font-bold"
+                    className="flex w-full items-center uppercase px-4 text-[1.1rem] tracking-wide font-medium"
                   >
                     লগিন
                   </Link>
@@ -59,13 +59,16 @@ const Header = () => {
               <CgMenuGridR size={23} />
             </div>
           )}
-          <div className="lg:hidden font-bold">Tanjim Online Library</div>
+          <div className="lg:hidden text-xl text-center font-bold flex flex-col">
+            <span className="">Tanjim</span>
+            <span className="text-xs">Online Library</span>
+          </div>
           <div className="lg:hidden">
             <div onClick={() => setOpen(!open)} className="block lg:hidden">
               {open ? (
-                <AiOutlineClose size={23} />
+                <AiOutlineClose size={25} />
               ) : (
-                <AiOutlineMenu size={23} />
+                <AiOutlineMenu size={25} />
               )}
             </div>
           </div>

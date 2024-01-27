@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="px-4 divide-y bg-gray-800 text-gray-100">
+    <footer className="px-4 divide-y bg-[#36373A] text-gray-100">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
           <Link
@@ -14,7 +14,7 @@ const Footer = () => {
             </span>
           </Link>
         </div>
-        <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           {[
             {
               title: "ফিচার",
@@ -32,8 +32,10 @@ const Footer = () => {
             },
           ].map((section, index) => (
             <div key={index} className="space-y-3">
-              <h3 className="uppercase font-bold text-1xl">{section.title}</h3>
-              <ul className="space-y-1 text-xs">
+              <h3 className="uppercase font-bold text-[1.1rem]">
+                {section.title}
+              </h3>
+              <ul className="space-y-1">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a rel="noopener noreferrer" href="#">
@@ -46,7 +48,7 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      <div className="py-6 text-sm text-center dark:text-gray-400">
+      <div className="py-6 text-center dark:text-gray-400">
         © 2023 TANJIM BD. All rights reserved.
       </div>
     </footer>
