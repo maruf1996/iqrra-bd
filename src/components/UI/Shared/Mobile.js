@@ -13,7 +13,7 @@ const Mobile = ({ navLinks, open, setOpen }) => {
       <div onClick={() => setOpen(!open)} className={mobileMenuClass}>
         <div className="bg-gray-50 p-4 h-12 lg:h-16 flex justify-between items-center">
           <div className=" font-bold">
-            <Link href="/">Tanjim Online Library</Link>
+            <Link href="/">মুসলিম পাঠাগার</Link>
           </div>
           <div onClick={() => setOpen(!open)}>
             <AiOutlineClose size={23} />

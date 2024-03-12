@@ -27,7 +27,7 @@ const Header = () => {
           }`}
         >
           <Link href="/" className="hidden lg:block font-bold lg:text-2xl">
-            Tanjim Online Library
+            মুসলিম পাঠাগার
           </Link>
           <div className="hidden lg:flex">
             <ul className="items-stretch lg:flex space-x-3">
@@ -60,8 +60,8 @@ const Header = () => {
             </div>
           )}
           <div className="lg:hidden text-xl text-center font-bold flex flex-col">
-            <span className="">Tanjim</span>
-            <span className="text-xs">Online Library</span>
+            <span className="">মুসলিম</span>
+            <span className="text-[.8rem] mt-[-.5rem]">পাঠাগার</span>
           </div>
           <div className="lg:hidden">
             <div onClick={() => setOpen(!open)} className="block lg:hidden">

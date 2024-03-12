@@ -14,7 +14,7 @@ const SubCategory = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db"
+          "https://muslim-pathagar-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db"
         );
         if (!response.ok) {
           console.error("Error:", response.statusText);
@@ -37,7 +37,7 @@ const SubCategory = () => {
 
       const dataToSend = { count: count };
       const response = await fetch(
-        "https://talim-online-libary-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
+        "https://muslim-pathagar-backend.vercel.app/api/v1/download/659281fdeaae4327d3ca56db",
         {
           method: "POST",
           headers: {

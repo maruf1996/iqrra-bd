@@ -39,7 +39,7 @@ const Sidebar = ({ dashboardOpen, setDashboardOpen }) => {
     >
       <div className="bg-gray-50 p-4 h-12 lg:h-16 flex justify-between items-center">
         <div className=" font-bold">
-          <Link href="/">Tanjim Online Library</Link>
+          <Link href="/">মুসলিম পাঠাগার</Link>
         </div>
         <div onClick={() => setDashboardOpen(!dashboardOpen)} className="">
           <AiOutlineClose size={25} />

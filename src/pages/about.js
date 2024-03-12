@@ -50,7 +50,7 @@ const About = () => {
           >
             <img
               alt=""
-              className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600"
+              className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600 pt-4"
               src="/assets/Team/maruf.png"
             />
             <p className="text-xl font-semibold leadi">Mariful Islam</p>
@@ -67,10 +67,10 @@ const About = () => {
               >
                 <img
                   alt=""
-                  className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600"
+                  className="self-center flex-shrink-0 w-36 h-36 mb-4 bg-center bg-cover rounded-full bg-gray-600 pt-4"
                   src={team?.image}
                 />
-                <p className="text-xl font-semibold leadi">{team?.name}</p>
+                <p className="lg:text-xl font-semibold leadi">{team?.name}</p>
                 <p className="">{team?.pation}</p>
               </div>
             ))}

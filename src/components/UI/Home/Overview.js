@@ -71,7 +71,7 @@ const Overview = () => {
         <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
           {renderFeature(
             "/assets/book.webp",
-            "আন লিমিটেড বই পড়ুন তানযীম লাইব্রেরী থেকে"
+            "আনলিমিটেড বই পড়ুন মুসলিম পাঠাগার থেকে"
           )}
           {renderFeature(
             "/assets/search.webp",

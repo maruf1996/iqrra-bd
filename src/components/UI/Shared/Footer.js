@@ -10,7 +10,7 @@ const Footer = () => {
             className="flex justify-center space-x-3 lg:justify-start"
           >
             <span className="self-center font-bold uppercase">
-              Tanjim Online Library
+              মুসলিম পাঠাগার
             </span>
           </Link>
         </div>
@@ -18,10 +18,39 @@ const Footer = () => {
           {[
             {
               title: "ফিচার",
-              links: ["সমস্ত বই", "আমাদের সম্পর্কে", "আমাদের সাথে যোগাযোগ"],
+              links: [
+                { title: "সমস্ত বই", link: "/category" },
+                { title: "আমাদের সম্পর্কে", link: "/about" },
+                { title: "আমাদের সাথে যোগাযোগ", link: "/contact" },
+              ],
             },
-            { title: "কোম্পানি", links: ["ওয়েবসাইট", "জিমেইল"] },
-            { title: "ডেভেলপার", links: ["ফেসবুক", "লিংকড-ইন", "ওয়েবসাইট"] },
+            {
+              title: "কোম্পানি",
+              links: [
+                { title: "ওয়েবসাইট", link: "/" },
+                {
+                  title: "জিমেইল",
+                  link: "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBptMjhzzCKDwrxpCBLqgHGHsBPlqFdvQXBdVLfnzBCSwzBBSPjhRjsWTkJdVWQhjdGNLCT",
+                },
+              ],
+            },
+            {
+              title: "ডেভেলপার",
+              links: [
+                {
+                  title: "ফেসবুক",
+                  link: "https://www.facebook.com/profile.php?id=100012133538164",
+                },
+                {
+                  title: "লিংকড-ইন",
+                  link: "https://www.linkedin.com/in/maruf1122",
+                },
+                {
+                  title: "ওয়েবসাইট",
+                  link: "https://mariful-islam.netlify.app/",
+                },
+              ],
+            },
             {
               title: "সোশ্যাল মিডিয়া",
               links: [
@@ -38,7 +67,11 @@ const Footer = () => {
               <ul className="space-y-1">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a rel="noopener noreferrer" href="#">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={link?.link}
+                    >
                       {link.title || link}
                     </a>
                   </li>
@@ -49,7 +82,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-center dark:text-gray-400">
-        © 2023 TANJIM BD. All rights reserved.
+        © 2023 Muslim Pathagar. All rights reserved.
       </div>
     </footer>
   );

@@ -15,7 +15,7 @@ const Category = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://talim-online-libary-backend.vercel.app/api/v1/download/6592b27feaae4327d3ca56e0"
+          "https://muslim-pathagar-backend.vercel.app/api/v1/download/6592b27feaae4327d3ca56e0"
         );
         if (!response.ok) {
           console.error("Error:", response.statusText);
@@ -36,7 +36,7 @@ const Category = () => {
       try {
         const dataToSend = { count: count };
         const response = await fetch(
-          "https://talim-online-libary-backend.vercel.app/api/v1/download/6592b27feaae4327d3ca56e0",
+          "https://muslim-pathagar-backend.vercel.app/api/v1/download/6592b27feaae4327d3ca56e0",
           {
             method: "POST",
             headers: {
@@ -67,7 +67,7 @@ const Category = () => {
         data-aos-duration="1000"
         className="text-center text-2xl md:text-4xl font-bold"
       >
-        আপনার পছন্দের সেরা বই পড়ুন তানযীম অনলাইন লাইব্রেরীতে
+        আপনার পছন্দের সেরা বই পড়ুন মুসলিম পাঠাগার থেকে
       </h2>
       <p
         data-aos="zoom-in"

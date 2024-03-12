@@ -13,15 +13,15 @@ const Banner = () => {
           data-aos="zoom-in"
           data-aos-easing="ease-out-cubic"
           data-aos-duration="1000"
-          className="text-3xl md:text-5xl font-bold uppercase"
+          className="text-3xl md:text-5xl font-bold uppercase mb-4"
         >
-          তানযীম অনলাইন লাইব্রেরী
+          মুসলিম পাঠাগার
         </h1>
         <p
           data-aos="zoom-in"
           data-aos-easing="ease-out-cubic"
           data-aos-duration="1000"
-          className="text-justify mt-2 "
+          className="text-justify"
         >
           আলো যেমন জাগতিক নিয়মে অন্ধকারকে ঘুচিয়ে দিয়ে সব কিছু মূর্ত করে,
           তেমনি বই মানুষের মনের ভেতরে জ্ঞানের আলো সঞ্চার করে যাবতীয় অন্ধকারকে
