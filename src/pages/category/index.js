@@ -77,7 +77,7 @@ const Category = () => {
       >
         নির্দিষ্ট ক্যাটাগরীর বই পড়তে সেই ক্যাটাগরীর উপরে ক্লিক করুন।{" "}
       </p>
-      <div className="container grid grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className=" grid grid-cols-2 lg:grid-cols-6 gap-8">
         {categories?.map((category) => (
           <Link
             data-aos="zoom-in"

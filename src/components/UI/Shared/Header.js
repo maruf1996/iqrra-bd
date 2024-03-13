@@ -22,7 +22,7 @@ const Header = () => {
     <header className="border-b-2 border-[#F4B223]">
       <div className="">
         <div
-          className={`p-2 container flex flex-row lg:flex-row justify-between items-center h-20 mx-auto  ${
+          className={`py-2 px-[4%] lg:px-[2%] flex flex-row lg:flex-row justify-between items-center h-20 mx-auto  ${
             user?.email && "flex-row-reverse"
           }`}
         >
